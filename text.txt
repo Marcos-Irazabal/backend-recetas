@@ -1,0 +1,10 @@
+first commit
+
+1) para iniciar: npm init -y
+2) creamos app.js
+3)instalamos express
+4)creamos el .gitignore
+5)instalo dotenv
+6)creo el .env
+
+en el .env tengo el user y el password asi como tambien la url de la base de datos q voy a usar
