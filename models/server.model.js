@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { dbConnect } = require('../db/config.db.js');
 
 class Server {
@@ -6,10 +7,13 @@ class Server {
     constructor() {
         this.app  = express();
         this.port = process.env.PORT;
-        this.usuariosPath = '/api/usuarios';
-        this.loginPath = '/api/auth';
-        this.uploadPath = '/api/upload';
-        this.categoryPath = '/api/category';
+
+
+        this.registerUserPath = "/api/register"
+        this.loginUserPath = "/api/auth"
+        this.IngredientsPath ="/api/ingredients"
+        this.ordenesPath="/api/ordenes"
+        this.recipesPath="/api/recipes"
 
         this.dbConnection();
 
@@ -22,8 +26,8 @@ class Server {
 
     middlewares() {
 
-        // CORS
-        //this.app.use( cors() );
+        //CORS
+        this.app.use( cors() );
 
         // Lectura y parseo del body
         this.app.use( express.json() );
@@ -35,10 +39,11 @@ class Server {
 
     //endpoints de mi server:
     routes() {
-        // this.app.use( this.usuariosPath, require('../routes/usuarios'));
-        // this.app.use( this.loginPath, require('../routes/auth'));
-        // this.app.use( this.uploadPath, require('../routes/uploads'));
-        // this.app.use( this.categoryPath, require('../routes/category'));
+        this.app.use(this.registerUserPath,require('../router/users'));
+        this.app.use(this.loginUserPath,require('../router/auth'));
+        this.app.use(this.IngredientsPath,require('../router/Ingredientes'));
+        this.app.use(this.ordenesPath,require('../router/orders'));
+        this.app.use(this.recipesPath,require('../router/recipes'));
     }
 
     listen() {
