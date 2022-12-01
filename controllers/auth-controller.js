@@ -34,7 +34,7 @@ const login = async(req, res = response) => {
 
 
     // tengo que devolver resData.email,resData.localId,resData.idToken,resData.expiresIn
-    res.json({
+    res.status(200).json({
         email:email,
         localId:user.localId,
         idToken:token,
@@ -42,4 +42,27 @@ const login = async(req, res = response) => {
     });
 }
 
-module.exports={ login}
+
+const usuariosPost = async(req, res = response) => {
+    //llega email ,password 
+    const {email,password} = req.body;
+    const user=new User({email,password});
+
+    salt=bcrypt.genSaltSync();
+    user.password=bcrypt.hashSync(password,salt)
+
+    //genero JSON web token
+    const token = await generateJWT(user.uid)
+
+    user.save();
+
+
+    res.status(200).json({
+        email:email,
+        localId:user.localId,
+        idToken:token,
+        expiresIn: user.expiresIn
+    });
+}
+
+module.exports={ login,usuariosPost}

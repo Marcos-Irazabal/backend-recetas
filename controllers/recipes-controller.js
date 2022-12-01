@@ -9,7 +9,7 @@ const recipesGet = async(req, res = response) => {
     for( i=0;i<recetas.length;i++){
         arrayResponse.push(recetas[i])
     }
-    res.send(arrayResponse)
+    res.status(200).json(arrayResponse)
 
 
 }
@@ -19,7 +19,7 @@ const recipesPut = async(req, res = response) => {
     const receta = new Recipe({nombre,foto_url,descripcion,ingredientes})
     console.log(receta)
     receta.save()
-    res.json({
+    res.status(200).json({
         msg:"Receta creada",
         receta
     })

@@ -16,7 +16,7 @@ const orderPut = async(req, res = response) => {
     const orden = new Order({usuario,ingredientes})
     console.log(orden)
     orden.save()
-    res.json({
+    res.status(200).json({
          msg:"orden creada",
         orden
     })
@@ -30,7 +30,7 @@ const orderGet = async(req, res = response) => {
     for( i=0;i<ordenes.length;i++){
         arrayResponse.push(ordenes[i])
     }
-    res.send(arrayResponse)
+    res.status(200).json(arrayResponse)
 
 }
 

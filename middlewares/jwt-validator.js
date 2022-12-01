@@ -33,11 +33,11 @@ const validateToken= async (req=request, res = response,next)=>{
         }
 
         //verifico q el user q pidio la baja del otro no este con estado en false (eliminado logicamente)
-        if(user.status){
-            return res.status(401).json({
-                msg:"unauthorized- authenticated user status is false (esta borrado logicamente)"
-            })
-        }
+        // if(user.status){
+        //     return res.status(401).json({
+        //         msg:"unauthorized- authenticated user status is false (esta borrado logicamente)"
+        //     })
+        // }
 
 
         next(); //pasa al siguiente middleware del routes/usuario en el metodo delete...

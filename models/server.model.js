@@ -9,8 +9,8 @@ class Server {
         this.port = process.env.PORT;
 
 
-        this.registerUserPath = "/api/register"
-        this.loginUserPath = "/api/auth"
+        //this.registerUserPath = "/api/register"
+        this.UserPath = "/api/auth"
         this.IngredientsPath ="/api/ingredients"
         this.ordenesPath="/api/ordenes"
         this.recipesPath="/api/recipes"
@@ -39,8 +39,7 @@ class Server {
 
     //endpoints de mi server:
     routes() {
-        this.app.use(this.registerUserPath,require('../router/users'));
-        this.app.use(this.loginUserPath,require('../router/auth'));
+        this.app.use(this.UserPath,require('../router/auth'));
         this.app.use(this.IngredientsPath,require('../router/Ingredientes'));
         this.app.use(this.ordenesPath,require('../router/orders'));
         this.app.use(this.recipesPath,require('../router/recipes'));

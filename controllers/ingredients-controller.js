@@ -7,7 +7,7 @@ const ingredientsGet = async(req, res = response) => {
     for( i=0;i<items.length;i++){
         arrayResponse.push(items[i]?.name)
     }
-    res.send(arrayResponse)
+    res.status(200).json(arrayResponse)
 
 
 }
