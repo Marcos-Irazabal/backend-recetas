@@ -11,7 +11,10 @@ const recipeSchema=Schema({
         type:String
     },
     ingredientes:{
-        type:[String],
+        type:[{
+            cantidad:Number,
+            nombre:String
+        }],
         default:[""],
     }
 })
